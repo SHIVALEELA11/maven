@@ -1,16 +1,10 @@
 node {
-
-    stage('Cloning code')
+    stage('Cloning')
     {
-        echo "Getting code form repo"
+       git 'https://github.com/ramdevops03/maven-build.git'
     }
-    stage('Build Code')
+    stage('build')
     {
-        echo "Building code with modules"
+        sh 'mvn package -f pom.xml'
     }
-    stage('Deploy')
-    {
-        echo "all success"
-    }
-     
 }
