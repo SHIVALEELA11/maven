@@ -1,10 +1,11 @@
 node {
-    stage('build')
-    {
-        sh 'mvn package -f pom.xml'
-    }
     stage('Cloning')
     {
        git 'https://github.com/ramdevops03/maven-build.git'
     }
+   stage('build')
+    {
+        sh 'mvn package -f pom.xml'
+    }
+   
 }
