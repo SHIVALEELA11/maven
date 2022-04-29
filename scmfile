@@ -1,0 +1,16 @@
+node {
+
+    stage('Cloning code')
+    {
+        echo "Getting code form repo"
+    }
+    stage('Build Code')
+    {
+        echo "Building code with modules"
+    }
+    stage('Deploy')
+    {
+        echo "all success"
+    }
+     
+}
