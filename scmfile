@@ -1,11 +1,14 @@
 node {
     stage('Cloning')
     {
-       git 'https://github.com/ramdevops03/maven-build.git'
+       checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ramdevops03/maven-build.git']]])
     }
-   stage('build')
+    stage('build')
     {
         sh 'mvn package -f pom.xml'
     }
-   
+    stage('Upload')
+    {
+    nexusArtifactUploader artifacts: [[artifactId: 'batch', classifier: '', file: 'target/batch.jar', type: 'jar']], credentialsId: 'Nexus', groupId: 'test.devops', nexusUrl: '3.95.243.117:8081/nexus', nexusVersion: 'nexus2', protocol: 'http', repository: 'releases', version: '10.0'   
+    }
 }
